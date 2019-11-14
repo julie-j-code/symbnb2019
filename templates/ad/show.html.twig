@@ -1,0 +1,73 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}
+{{ad.title}}
+{% endblock %}
+
+{% block body %}
+<div class="ad-title" style="background-image: url({{ad.coverImage}})">
+    <div class="container">
+        <h1>{{ad.title}}</h1>
+        <p>{{ad.introduction}}</p>
+        <p class="h2">
+            <strong> {{ad.rooms}}chambres</strong>pour <strong>{{ad.price}}euros</strong>par nuit
+        </p>
+        <a href="" class="btn btn-primary">Réserver</a>
+    </div>
+</div>
+<div class="container">
+    <div class="row">
+        <div class="col-md-8 mb3">
+                {{ad.content | raw}}
+
+                <div id="carouselExampleIndicators" class="carousel slide" data-ride="carousel">
+                    <ol class="carousel-indicators">
+                        {% for image in ad.images %}
+                        <li data-target="#carouselExampleIndicators" data-slide-to="{{ loop.index0 }}" {% if loop.first %} class="active" {% endif %}></li>
+                        {% endfor %}
+                    </ol>
+                    <div class="carousel-inner">
+                    {% for image in ad.images %}
+                        <div class="carousel-item {% if loop.first %}active{% endif %}">
+                            <img src="{{image.url}}" class="d-block w-100" alt="...">
+                            <div class="carousel-caption d-none d-md-block">
+                                <h5>{{ ad.title }}</h5>
+                                <p>{{ image.caption}}</p>
+                            </div>
+                        </div>
+                    {% endfor %}
+                    </div>
+                    <a class="carousel-control-prev" href="#carouselExampleIndicators" role="button" data-slide="prev">
+                      <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+                      <span class="sr-only">Previous</span>
+                    </a>
+                    <a class="carousel-control-next" href="#carouselExampleIndicators" role="button" data-slide="next">
+                      <span class="carousel-control-next-icon" aria-hidden="true"></span>
+                      <span class="sr-only">Next</span>
+                    </a>
+                </div>
+        </div>
+        <div class="col">
+            <div class="row">
+                <div class="col-4">
+                    <img src="http://placehold.it/64x64" alt="">
+                </div>
+                <div class="col">
+                    <h3>Joseph Dupontgfgfgffff</h3>
+                    <span class="badge badge-primary">
+                        3 annonces
+                    </span>   
+                </div>
+            </div>
+            <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Corrupti ipsam iusto dolorum nesciunt deleniti laudantium pariatur, odit impedit eligendi incidunt!</p>
+            <p>Repellendus officia voluptatum, rerum commodi blanditiis non consectetur ullam deserunt, placeat odio quae reprehenderit consequatur laborum iste ad illum temporibus?</p>
+            <p>Iure iste quod mollitia accusamus quibusdam quas eveniet veritatis culpa, dolorem distinctio veniam dolores nostrum ullam autem magnam perferendis impedit.</p>
+
+        </div>
+    </div>
+</div>
+<script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js" integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1" crossorigin="anonymous"></script>
+<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js" integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM" crossorigin="anonymous"></script>
+
+{% endblock %}
