@@ -14,7 +14,7 @@ use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use Symfony\Component\Form\Extension\Core\Type\SubmitType;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\ParamConverter;
 
-class AdController extends Controller
+class AdController extends AbstractController
 {
     /**
      * @Route("/ads", name="ads_index")
@@ -56,8 +56,9 @@ class AdController extends Controller
             foreach($ad->getImages() as $image){
                 $image->setAd($ad);
                 $manager->persist($image);
-
             }
+
+            $ad->setAuthor($this->getUser());
             $manager->persist($ad);
             $manager->flush();
 
@@ -95,6 +96,7 @@ class AdController extends Controller
                 $manager->persist($image);
 
             }
+
             $manager->persist($ad);
             $manager->flush();
 
@@ -107,7 +109,6 @@ class AdController extends Controller
                 'slug'=>$ad->getSlug()
             ]);
         }            
-
 
 
         return $this->render('ad/edit.html.twig', [
