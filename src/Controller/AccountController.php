@@ -12,6 +12,7 @@ use Symfony\Component\HttpFoundation\Request;
 use Doctrine\Common\Persistence\ObjectManager;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
+use Sensio\Bundle\FrameworkExtraBundle\Configuration\IsGranted;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\Security\Http\Authentication\AuthenticationUtils;
 use Symfony\Component\Security\Core\Encoder\UserPasswordEncoderInterface;
@@ -82,8 +83,9 @@ class AccountController extends AbstractController
     }
 
     /**
-     *Permet d'afficher et de traiter le formulaire d'édition de profil
-     *@Route("/account/profile", name="account_profile")
+     * Permet d'afficher et de traiter le formulaire d'édition de profil
+     * @Route("/account/profile", name="account_profile")
+     * @IsGranted("ROLE_USER")
      * @return Response
      */
     public function profile(Request $request, ObjectManager $manager){
@@ -110,8 +112,9 @@ class AccountController extends AbstractController
     }
 
     /**
-     * Permetde modifier le mot de passe
+     * Permet de modifier le mot de passe
      * @Route("/account/password-update", name="account_password")
+     * @IsGranted("ROLE_USER")
      * @return Response
      */
 
@@ -155,6 +158,7 @@ $form->get('oldPassword')->addError(new FormError("Le mot de passe que vous avez
     /**
      * Permet d'afficher le profile compte utilisateur
      * @Route("/account", name="account_index")
+     * @IsGranted("ROLE_USER")
      * 
      * @return Response
      */

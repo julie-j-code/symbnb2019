@@ -8,6 +8,7 @@ use Faker\Factory;
 use App\Entity\User;
 //use Cocur\Slugify\Slugify;
 use App\Entity\Image;
+use App\Entity\Roles;
 use App\DataFixtures\AppFixtures;
 use Doctrine\Bundle\FixturesBundle\Fixture;
 use Doctrine\Common\Persistence\ObjectManager;
@@ -26,6 +27,25 @@ class AppFixtures extends Fixture
     {
         $faker=Factory::create('FR-fr');
         //$slugify=new Slugify(); géré depuis l'entité ad
+
+
+        //ici, nous gérons les roles puisque l'entité Roles ne contient rien
+        $adminRole = new Roles();
+        $adminRole->setTitle('ROLE_ADMIN');
+        $manager->persist($adminRole);
+
+        $adminUser = new User();
+        $adminUser->setFirstName('Julie')
+                  ->setLastName('Jeannet')
+                  ->setEmail('jeannet.julie@gmail.com')
+                  ->setHash($this->encoder->encodePassword($adminUser, 'password'))
+                  ->setPicture('https://randomuser.me/api/portraits/')
+                  ->setIntroduction($faker->sentence())
+                  ->setDescription('<p>'.join('</p><p>', $faker->paragraphs(3)).'</p>')
+                  ->addUserRole($adminRole);
+
+        $manager->persist($adminUser);
+
 
         //ici, nous gérons les utilisateurs
         $users = [];
@@ -47,7 +67,7 @@ class AppFixtures extends Fixture
                  ->setLastName($faker->lastname)
                  ->setEmail($faker->email)
                  ->setIntroduction($faker->sentence())
-                 ->setDescription('<p>'.join('<p></p>', $faker->paragraphs(3)).'</p>')
+                 ->setDescription('<p>'.join('</p><p>', $faker->paragraphs(3)).'</p>')
                  ->setHash($hash)
                  ->setPicture($picture);
 
