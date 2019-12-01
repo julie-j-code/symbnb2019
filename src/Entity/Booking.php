@@ -7,6 +7,7 @@ namespace App\Entity;
 use Doctrine\ORM\Mapping as ORM;
 use Doctrine\ORM\Mapping\HasLifecycleCallbacks;
 use Symfony\Component\Validator\Constraints\Date;
+use Symfony\Component\Validator\Constraints\DateTime;
 use Symfony\Component\Validator\Constraints as Assert;
 
 /**
@@ -37,7 +38,7 @@ class Booking
     /**
      * @ORM\Column(type="datetime")
      * @Assert\Date(message="Attention, la date d'arrivée doit être au bon format !")
-     * @Assert\GreaterThan("today",message="La date d'arrivée doit être ultérieure à la date d'aujourd'hui")
+     * @Assert\GreaterThan("today", message="La date d'arrivée doit être ultérieure à la date d'aujourd'hui", groups={"front"})
      */
     private $startDate;
 
@@ -64,9 +65,10 @@ class Booking
     private $comment;
 
     /**
-     * Callback appelé à chaque fois qu'on crée une réservation
+     * Callback appelé à chaque fois qu'on crée une réservation (ou qu'on la modifie)
      * 
      * @ORM\PrePersist
+     * @ORM\PreUpdate
      * @return void
      */
 

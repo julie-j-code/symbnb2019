@@ -10,10 +10,12 @@ use App\Entity\User;
 use App\Entity\Image;
 use App\Entity\Roles;
 use App\Entity\Booking;
+use App\Entity\Comment;
 use App\DataFixtures\AppFixtures;
 use Doctrine\Bundle\FixturesBundle\Fixture;
 use Doctrine\Common\Persistence\ObjectManager;
 use Symfony\Component\Security\Core\Encoder\UserPasswordEncoderInterface;
+use Sensio\Bundle\FrameworkExtraBundle\Configuration\ParamConverter;
 
 class AppFixtures extends Fixture
 {
@@ -132,6 +134,18 @@ class AppFixtures extends Fixture
                         ->setComment($comment);
 
                         $manager->persist($booking);
+
+                        //gestion des commentaires
+                        if(mt_rand(0,1)){
+                            $comment = new Comment();
+                            $comment->setContent($faker->paragraph())
+                                    ->setRating(mt_rand(1,5))
+                                    ->setAuthor($booker)
+                                    ->setAd($ad);
+                                    //la date de création va se faire automatiquement dans l'entité comment
+                            
+                            $manager->persist($comment);
+                        }
 
                 }
                       

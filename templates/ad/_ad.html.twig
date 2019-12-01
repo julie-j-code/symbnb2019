@@ -1,8 +1,12 @@
        <div class="col-md-4">
             <div class="card bg-light mb-3">
                 <div class="card-header text-center">
-                    {{ ad.rooms }} chambres, <strong>{{ad.price}}€/nuit</strong><br>
-                    <small>Pas encore noté</small>
+                    {{ ad.rooms }} chambres, <strong>{{ad.price | number_format(2,',',' ')}}€/nuit</strong><br>
+                    {% if ad.comments | length >0 %}
+                        {% include "partials/rating.html.twig" with {'rating':ad.avgRatings}%}
+                    {% else %}                        
+                        <small>Pas encore noté</small>
+                    {% endif %}
                 </div>
                 <a href="{{ path('ads_show',{'slug':ad.slug})}}">
                     <img src="{{ad.coverImage}}" alt="Image de l'appartement" style="height:200px; width:100%; display:block">
@@ -16,7 +20,7 @@
                     <p class="card-text">
                         {{ad.introduction}}
                     </p>
-                    <a href="{{ path('ads_show',{'slug':ad.slug})}}" class="btn btn-secondary">En savoir plus</a>
+                    <a href="{{ path('ads_show',{'slug':ad.slug})}}" class="btn btn-primary float-right">En savoir plus</a>
                     {% if app.user and app.user == ad.author %}   
                           <button href="{{path('ads_edit', {'slug':ad.slug})}}" class="btn bg-gradient-secondary">Modifier l'annonec</button>
                     {% endif %}
