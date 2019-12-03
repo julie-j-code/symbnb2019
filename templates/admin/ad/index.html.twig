@@ -6,33 +6,34 @@
 <div class="container-fluid">
     <h1 class="my-5">Gestion des annonces</h1>
     <table class="table table-hover">
-    <thead>
-        <tr>
-            <th>Id</th>
-            <th>Titre</th>
-            <th>Auteur</th>
-            <th>Réservations</th>
-            <th>Note</th>
-            <th>Actions</th>
-        </tr>
-    </thead>
+        <thead>
+            <tr>
+                <th>Id</th>
+                <th>Titre</th>
+                <th>Auteur</th>
+                <th>Réservations</th>
+                <th>Note</th>
+                <th>Actions</th>
+            </tr>
+        </thead>
 
-    <tbody>
-    {% for ad in ads %}
-    <tr>
-        <td>{{ad.id}}</td>
-        <td>{{ad.title}}</td>
-        <td><img src="{{ad.author.picture}}" alt="{{ad.author.fullName}}" class="avatar avatar-micro mr-2">{{ad.author.fullName}}</td>
-        <td><span class="badge badge-primary rounded">{{ad.bookings | length}}</span}</td>
-        <td><span class="badge badge-primary rounded">{{ad.avgRatings |number_format(1,',',' ')}}</span></td>
-        <td>
-            <a href="{{path('admin_ads_edit', {'id':ad.id})}}" class="btn btn-primary"><i class="fas fa-edit"></i></a>    
-            <a href="{{path('admin_ads_delete', {'id':ad.id})}}" class="btn btn-danger"><i class="fas fa-trash"></i></a>
-        </td>
-    </tr>
-    {% endfor %}
-    </tbody>
-    
+        <tbody>
+        {% for ad in pagination.data %}
+        <tr>
+            <td>{{ad.id}}</td>
+            <td>{{ad.title}}</td>
+            <td><img src="{{ad.author.picture}}" alt="{{ad.author.fullName}}" class="avatar avatar-micro mr-2">{{ad.author.fullName}}</td>
+            <td><span class="badge badge-primary rounded">{{ad.bookings | length}}</span}</td>
+            <td><span class="badge badge-primary rounded">{{ad.avgRatings |number_format(1,',',' ')}}</span></td>
+            <td>
+                <a href="{{path('admin_ads_edit', {'id':ad.id})}}" class="btn btn-primary"><i class="fas fa-edit"></i></a>    
+                <a href="{{path('admin_ads_delete', {'id':ad.id})}}" class="btn btn-danger"><i class="fas fa-trash"></i></a>
+            </td>
+        </tr>
+        {% endfor %}
+        </tbody>  
     </table>
+    {{ pagination.display() }}
+    <!--au lieu de l'include "admin/partials/pagination.html.twig" with {'route': 'admin_ads_index'}-->
 </div>
 {% endblock %}
