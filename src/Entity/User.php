@@ -10,6 +10,7 @@ use Doctrine\Common\Collections\ArrayCollection;
 use Symfony\Component\Security\Core\User\UserInterface;
 use Symfony\Component\Validator\Constraints as Assert;
 use Symfony\Bridge\Doctrine\Validator\Constraints\UniqueEntity;
+use Symfony\Bundle\WebProfilerBundle;
 
 /**
  * @ORM\Entity(repositoryClass="App\Repository\UserRepository")
@@ -43,9 +44,6 @@ class User implements UserInterface
     public function getFullName(){
         return "{$this->firstName} {$this->lastName}";
     }
-
-
-
 
 
     /**
