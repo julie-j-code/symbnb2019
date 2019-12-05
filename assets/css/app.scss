@@ -17,13 +17,15 @@ div.ad-title{
     background-position: center;
     .btn{
         margin-top: 2em;
-        font-size: 1.4em;
-        line-height: 1.4em;
     }
     h1, p{
         color:white;
         text-shadow: 3px 3px 3px rgba(0,0,0,0.5);
     }
+}
+
+h2{
+    letter-spacing: 0.1em;
 }
 
 div.carousel-caption {
@@ -56,4 +58,8 @@ color:firebrick !important;
 
 span.rating i{
     color:goldenrod;
+}
+
+span.text-small{
+    font-size: smaller;
 }

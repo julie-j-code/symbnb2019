@@ -5,7 +5,7 @@
 {% endblock %}
 
 {% block body %}
-<div class="ad-title" style="background: linear-gradient(to bottom, black, rgba(0,0,0,0)), url({{ad.coverImage}})">
+<div class="ad-title" style="background: linear-gradient(to bottom, black, rgba(9,9,9,0)), url({{ad.coverImage}})">
     <div class="container">
         <h1>{{ad.title}}</h1>
         <p>{{ad.introduction}}</p>
@@ -62,7 +62,8 @@
                         </div>
                         <div class="col">
                         {% include "partials/rating.html.twig" with {'rating':ad.avgRatings} %}
-                        (calculée sur {{ad.comments | length}})
+                        <br>
+                        <span class="text-small">(calculée sur {{ad.comments | length}})</span>                      
                         </div>
                         </div>
                         </h4>
