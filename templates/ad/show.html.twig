@@ -5,12 +5,12 @@
 {% endblock %}
 
 {% block body %}
-<div class="ad-title" style="background-image: url({{ad.coverImage}})">
+<div class="ad-title" style="background: linear-gradient(to bottom, black, rgba(0,0,0,0)), url({{ad.coverImage}})">
     <div class="container">
         <h1>{{ad.title}}</h1>
         <p>{{ad.introduction}}</p>
         <p class="h2">
-            <strong> {{ad.rooms}}chambre(s)</strong> pour <strong>{{ad.price | number_format(2,',',' ')}}&euro;</strong> par nuit
+            <strong> {{ad.rooms}} chambre(s)</strong> pour <strong>{{ad.price | number_format(2,',',' ')}}&euro;</strong> par nuit
         </p>
         <a href="{{path('booking_create',{'slug': ad.slug})}}" class="btn btn-primary">Réserver</a>
         {% if app.user and app.user == ad.author %}   
@@ -20,8 +20,8 @@
     </div>
 </div>
 <div class="container">
-    <div class="row">
-        <div class="col-md-8 mb3">
+    <div class="row mt-3">
+        <div class="col-md-8 mb-3">
                 {{ad.content | raw}}
 
                 <div id="carouselExampleIndicators" class="carousel slide" data-ride="carousel">
@@ -33,7 +33,7 @@
                     <div class="carousel-inner">
                     {% for image in ad.images %}
                         <div class="carousel-item {% if loop.first %}active{% endif %}">
-                            <img src="{{image.url}}" class="d-block w-100" alt="...">
+                            <img src="{{image.url}}" class="d-block w-100" alt="{{ image.caption}}">
                             <div class="carousel-caption d-none d-md-block">
                                 <h5>{{ ad.title }}</h5>
                                 <p>{{ image.caption}}</p>
@@ -86,7 +86,7 @@
             <div class="row">
                 <div class="col-3">
                      <a href="{{ path('user_show', {'slug':a.slug}) }}">
-                        <img src="{{ a.picture}}" class="avatar avatar-medium" alt="Avatar de {{ a.fullName}}">
+                        <img src="{{ a.picture}}" class="avatar avatar-medium mb-3" alt="Avatar de {{ a.fullName}}">
                     </a>
                 </div>
                 <div class="col">
