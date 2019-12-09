@@ -34,7 +34,6 @@ class AdminAdController extends AbstractController
  * @Route("/admin/ads/{id}/edit", name="admin_ads_edit")
  * 
  * @param Ad $ad
- * @param ObjectManager $manager
  * @return Response
  */
 
