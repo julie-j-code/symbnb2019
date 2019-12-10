@@ -6,18 +6,16 @@
 
 {% block body %}
 
-<div class="ad-title" style="background-image: url({{  ad.coverImage }})">
+<div class="ad-title" style="background: linear-gradient(to bottom, black, rgba(9,9,9,0)), url({{  ad.coverImage }})">
     <div class="container">
         <h1>{{ad.title}}</h1>
         <p>{{ad.introduction}}</p>
         <p class="h2">
             <strong>{{ad.rooms}} chambres</strong> pour <strong>{{ad.price | number_format(2, ',', ' ')}}&euro;</strong> par nuit
         </p>
-        <a href="{{ path('booking_create', {'slug': ad.slug}) }}" class="btn btn-primary">Réserver !</a>
-
+        <a href="{{ path('booking_create', {'slug': ad.slug}) }}" class="btn btn-primary">Réserver</a>
         {% if app.user and app.user == ad.author %}
             <a href="{{ path('ads_edit', {'slug': ad.slug}) }}" class="btn btn-secondary">Modifier l'annonce</a>
-
             <a href="{{ path('ads_delete', {'slug': ad.slug})}}" class="btn btn-danger" onclick="return confirm(`Êtes vous sur de vouloir supprimer l'annonce : {{ad.title}} ?`)">Supprimer l'annonce</a>
         {% endif %}
     </div>
