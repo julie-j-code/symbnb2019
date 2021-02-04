@@ -12,14 +12,17 @@ div.container, div.container-fluid{margin-top: 20px;}
 }
 
 div.ad-title{
-    padding :2em;
-    background-size: cover;
+    padding :30em;
+    background-size:cover;
+    background-repeat: no-repeat;
+    background-attachment: fixed;
+
     background-position: center;
     .btn{
         margin-top: 2em;
     }
     h1, p{
-        color:white;
+        color:red;
         text-shadow: 3px 3px 3px rgba(0,0,0,0.5);
     }
 }

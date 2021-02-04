@@ -6,7 +6,8 @@
 
 {% block body %}
 
-<div class="ad-title" style="background: linear-gradient(to bottom, black, rgba(9,9,9,0)), url({{  ad.coverImage }})">
+{# <div class="ad-title" style="background: linear-gradient(to bottom, black, rgba(9,9,9,0)), url({{  ad.coverImage }})"> #}
+<div class="ad-title" style="background-image:url({{  ad.coverImage }})">
     <div class="container">
         <h1>{{ad.title}}</h1>
         <p>{{ad.introduction}}</p>
