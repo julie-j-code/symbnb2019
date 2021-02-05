@@ -5,7 +5,8 @@
 #     namespace: DoctrineMigrations
 
 doctrine_migrations:
-  migrations_paths:
-    "App\\Migrations": "src/Migrations"
-    # et ainsi des paires namespace: chemin depuis la racine du projet
-    namespace: DoctrineMigrations
+    migrations_paths:
+        # namespace is arbitrary but should be different from App\Migrations
+        # as migrations classes should NOT be autoloaded
+        'DoctrineMigrations': '%kernel.project_dir%/migrations'
+
