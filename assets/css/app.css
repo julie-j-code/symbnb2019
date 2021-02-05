@@ -12,10 +12,11 @@ div.container, div.container-fluid {
 }
 
 div.ad-title {
-  padding: 30em;
+  padding: 3em;
   background-size: cover;
   background-repeat: no-repeat;
   background-attachment: fixed;
+  min-height: 50vw;
   background-position: center;
 }
 
@@ -24,7 +25,7 @@ div.ad-title .btn {
 }
 
 div.ad-title h1, div.ad-title p {
-  color: red;
+  color: white;
   text-shadow: 3px 3px 3px rgba(0, 0, 0, 0.5);
 }
 
